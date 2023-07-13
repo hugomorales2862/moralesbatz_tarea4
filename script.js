@@ -19,7 +19,7 @@ function removeElement(e) {
             </span>
         </div>
         <div class="control has-icons-left">
-            <input class="input" name="lastName" type="text" placeholder="" autocomplete="off">
+            <input class="input" name="lastName" type="text" placeholder="Apellido" autocomplete="off">
             <span class="icon is-small is-left">
                 <i class="fas fa-user"></i>
             </span>
@@ -39,26 +39,27 @@ function removeElement(e) {
         
         $form.reset();
     })
-    
     $btnSave.addEventListener("click", (e) => {
         e.preventDefault();
     
-        if ($form.Name.value.trim() === "") {
-            $form.Name.classList.add("is-danger");
-        } else {
-            $form.Name.classList.remove("is-danger");
-        }
+        const $inputs = $form.querySelectorAll("input[name='Name'], input[name='lastName']");
+        let isValid = true;
     
-        if ($form.lastName.value.trim() === "") {
-            $form.lastName.classList.add("is-danger");
-        } else {
-            $form.lastName.classList.remove("is-danger");
-        }
+        $inputs.forEach(($input) => {
+            if ($input.value.trim() === "") {
+                $input.classList.add("is-danger");
+                isValid = false;
+            } else {
+                $input.classList.remove("is-danger");
+            }
+        });
     
-        if ($form.Name.value.trim() === "" || $form.lastName.value.trim() === "") {
-            $form.Name.focus();
-        } else {
+        if (isValid) {
             alert("Se guardaron los datos");
+        } else {
+            alert("Complete todos los campos");
         }
-    })
+    });
+    
+    
 })();
