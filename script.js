@@ -1,5 +1,6 @@
 function removeElement(e) {
-    event.target.parentElement.remove();
+    const $element = e.target.closest(`.field`)
+    $element.remove()
 }
 
 (function load() {
@@ -8,7 +9,7 @@ function removeElement(e) {
     const $btnAdd = document.getElementById("btnAdd");
     const $btnSave = document.getElementById("btnSave");
 
-    const templateElement = (data) => {
+    const templateElement = () => {
         return (
             `<div class="field is-grouped">
             <div class="control has-icons-left">
@@ -32,21 +33,32 @@ function removeElement(e) {
     
     $btnAdd.addEventListener("click", (e) => {
         const $div = document.createElement("div");
-        $div.classList.add("notification", "is-primary", "is-light", "mb-2", "mt-1")
+        // $div.classList.add("notification", "is-primary", "is-light", "mb-2", "mt-1")
         $div.innerHTML = templateElement(`${$form.Name.value} ${$form.lastName.value}`)
         $divElements.insertBefore($div, $divElements.firstChild);
         
         $form.reset();
-    });
+    })
     
     $btnSave.addEventListener("click", (e) => {
-        if ($form.Name.value.trim() === "" && $form.lastName.value.trim() === "") {
-            alert("Complete todos los datos");
+        e.preventDefault();
+    
+        if ($form.Name.value.trim() === "") {
+            $form.Name.classList.add("is-danger");
         } else {
-            alert("Se guardaron los datos ")
-            
+            $form.Name.classList.remove("is-danger");
         }
-        
-
-    });
+    
+        if ($form.lastName.value.trim() === "") {
+            $form.lastName.classList.add("is-danger");
+        } else {
+            $form.lastName.classList.remove("is-danger");
+        }
+    
+        if ($form.Name.value.trim() === "" || $form.lastName.value.trim() === "") {
+            $form.Name.focus();
+        } else {
+            alert("Se guardaron los datos");
+        }
+    })
 })();
