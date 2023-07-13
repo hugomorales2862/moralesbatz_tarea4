@@ -18,7 +18,7 @@ function removeElement(e) {
             </span>
         </div>
         <div class="control has-icons-left">
-            <input class="input" name="lasName" type="text" placeholder="" autocomplete="off">
+            <input class="input" name="lastName" type="text" placeholder="" autocomplete="off">
             <span class="icon is-small is-left">
                 <i class="fas fa-user"></i>
             </span>
@@ -40,7 +40,7 @@ function removeElement(e) {
     });
     
     $btnSave.addEventListener("click", (e) => {
-        if ($form.Name.value.trim() !== "" && $form.lastName.value.trim() !== "") {
+        if ($form.Name.value.trim() === "" && $form.lastName.value.trim() === "") {
             alert("Complete todos los datos");
         } else {
             alert("Se guardaron los datos ")
