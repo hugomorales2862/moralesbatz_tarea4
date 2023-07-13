@@ -1,13 +1,13 @@
+const $form = document.getElementById("frmUsers")
+const $divElements = document.getElementById("divElements")
+const $btnAdd = document.getElementById("btnAdd")
+const $btnSave = document.getElementById("btnSave")
+
 function removeElement(e) {
     const $element = e.target.closest(`.field`)
     $element.remove()
 }
 
-(function load() {
-    const $form = document.getElementById("frmUsers");
-    const $divElements = document.getElementById("divElements");
-    const $btnAdd = document.getElementById("btnAdd");
-    const $btnSave = document.getElementById("btnSave");
 
     const templateElement = () => {
         return (
@@ -42,24 +42,24 @@ function removeElement(e) {
     $btnSave.addEventListener("click", (e) => {
         e.preventDefault();
     
-        const $inputs = $form.querySelectorAll("input[name='Name'], input[name='lastName']");
-        let isValid = true;
+        const $inputs = $form.querySelectorAll("input[name='Name'], input[name='lastName']")
+        let isValid = true
     
         $inputs.forEach(($input) => {
             if ($input.value.trim() === "") {
-                $input.classList.add("is-danger");
+                $input.classList.add("is-danger")
                 isValid = false;
             } else {
-                $input.classList.remove("is-danger");
+                $input.classList.remove("is-danger")
             }
         });
     
         if (isValid) {
-            alert("Se guardaron los datos");
+            alert("Se guardaron los datos")
         } else {
-            alert("Complete todos los campos");
+            alert("Complete todos los campos")
         }
     });
     
     
-})();
+
